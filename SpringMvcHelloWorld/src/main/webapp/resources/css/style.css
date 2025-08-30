@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #2d3748;
     background-color: #f7fafc;
@@ -48,6 +48,7 @@ body {
     font-size: 2rem;
     filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
     animation: float 3s ease-in-out infinite;
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
 }
 
 .logo h1 {
@@ -203,6 +204,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    font-family: 'Inter', 'Segoe UI', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
 }
 
 .btn-primary {
@@ -343,6 +345,8 @@ body {
     display: block;
     transition: all 0.4s ease;
     filter: drop-shadow(0 2px 8px rgba(102, 126, 234, 0.2));
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+    line-height: 1;
 }
 
 .sport-card:hover .sport-icon {
@@ -488,9 +492,9 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -565,6 +569,12 @@ footer {
     font-size: 1.5rem;
 }
 
+.footer-section p {
+    color: #cbd5e0;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+}
+
 .footer-section ul {
     list-style: none;
 }
@@ -585,12 +595,43 @@ footer {
     padding-left: 5px;
 }
 
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    padding: 8px 16px;
+    background: rgba(102, 126, 234, 0.2);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.social-link:hover {
+    background: rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+    padding-left: 16px;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 30px;
     border-top: 1px solid #4a5568;
     color: #a0aec0;
     font-size: 0.9rem;
+}
+
+.footer-bottom a {
+    color: #cbd5e0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    color: #667eea;
 }
 
 /* Animations */
