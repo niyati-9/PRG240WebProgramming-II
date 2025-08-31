@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/* ========== RESET & BASE STYLES ========== */
 * {
     margin: 0;
     padding: 0;
@@ -6,11 +6,15 @@
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #2d3748;
-    background-color: #f7fafc;
+    background-color: #f8fafc;
     overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -19,16 +23,20 @@ body {
     padding: 0 20px;
 }
 
-/* Header and Navigation */
+/* ========== NAVIGATION ========== */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease;
+}
+
+.navbar:hover {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
 .navbar .container {
@@ -38,17 +46,18 @@ body {
     padding: 1rem 20px;
 }
 
+/* ========== LOGO ========== */
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
 }
 
 .logo-icon {
-    font-size: 2rem;
-    filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
-    animation: float 3s ease-in-out infinite;
-    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 8px rgba(102, 126, 234, 0.3));
+    animation: float 4s ease-in-out infinite;
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
 }
 
 .logo h1 {
@@ -56,11 +65,12 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 800;
     letter-spacing: -0.5px;
 }
 
+/* ========== NAVIGATION LINKS ========== */
 .nav-links {
     display: flex;
     list-style: none;
@@ -71,9 +81,10 @@ body {
     text-decoration: none;
     color: #4a5568;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
     position: relative;
+    padding: 8px 0;
 }
 
 .nav-links a::after {
@@ -81,11 +92,12 @@ body {
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -5px;
+    bottom: 0;
     left: 50%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     transition: all 0.3s ease;
     transform: translateX(-50%);
+    border-radius: 1px;
 }
 
 .nav-links a:hover::after {
@@ -94,9 +106,10 @@ body {
 
 .nav-links a:hover {
     color: #667eea;
+    transform: translateY(-1px);
 }
 
-/* Auth Buttons */
+/* ========== BUTTONS ========== */
 .auth-buttons {
     display: flex;
     gap: 1rem;
@@ -104,10 +117,10 @@ body {
 }
 
 .btn-login, .btn-signup {
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 25px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -124,7 +137,8 @@ body {
 .btn-login:hover {
     background-color: #f7fafc;
     border-color: #cbd5e0;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-signup {
@@ -135,14 +149,14 @@ body {
 
 .btn-signup:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
 }
 
-/* Hero Section */
+/* ========== HERO SECTION ========== */
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 140px 0 100px;
+    padding: 160px 0 120px;
     text-align: center;
     margin-top: 70px;
     position: relative;
@@ -155,45 +169,45 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
-    background-size: cover;
-    opacity: 0.1;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    opacity: 0.8;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero-content h2 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 3.8rem;
+    margin-bottom: 2rem;
     font-weight: 800;
     letter-spacing: -1px;
     animation: fadeInUp 1s ease-out;
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
-    margin-bottom: 2.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
     opacity: 0.95;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
     font-weight: 400;
-    animation: fadeInUp 1s ease-out 0.2s both;
+    line-height: 1.8;
+    animation: fadeInUp 1s ease-out 0.3s both;
 }
 
 .cta-buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp 1s ease-out 0.4s both;
+    animation: fadeInUp 1s ease-out 0.6s both;
 }
 
 .btn-primary, .btn-secondary {
-    padding: 15px 30px;
+    padding: 18px 36px;
     border: none;
     border-radius: 30px;
     font-size: 1.1rem;
@@ -203,8 +217,8 @@ body {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-family: 'Inter', 'Segoe UI', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
+    gap: 10px;
+    font-family: inherit;
 }
 
 .btn-primary {
@@ -217,25 +231,25 @@ body {
 .btn-primary:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary {
     background-color: white;
     color: #667eea;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .btn-secondary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
     background-color: #f8f9ff;
 }
 
-/* Sports Section */
+/* ========== SPORTS SECTION ========== */
 .sports-section {
-    padding: 100px 0;
-    background: linear-gradient(45deg, #f7fafc 0%, #edf2f7 100%);
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e6fffa 100%);
     position: relative;
 }
 
@@ -245,15 +259,14 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 100px;
-    background: linear-gradient(to bottom, #667eea, transparent);
-    opacity: 0.05;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
 }
 
 .sports-section h2 {
     text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 4rem;
+    font-size: 3rem;
+    margin-bottom: 5rem;
     color: #2d3748;
     font-weight: 700;
     position: relative;
@@ -262,10 +275,10 @@ body {
 .sports-section h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
+    width: 100px;
     height: 4px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 2px;
@@ -273,25 +286,26 @@ body {
 
 .sports-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .sport-card {
     background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 2rem;
     border-radius: 20px;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(102, 126, 234, 0.1);
     position: relative;
     overflow: hidden;
-    min-height: 180px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
 }
 
 .sport-card::before {
@@ -303,7 +317,7 @@ body {
     height: 4px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
 .sport-card::after {
@@ -313,16 +327,20 @@ body {
     left: 50%;
     width: 0;
     height: 0;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.6s ease;
     z-index: 0;
 }
 
+.sport-card:hover::before {
+    transform: scaleX(1);
+}
+
 .sport-card:hover::after {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
 
 .sport-card > * {
@@ -330,54 +348,50 @@ body {
     z-index: 1;
 }
 
-.sport-card:hover::before {
-    transform: scaleX(1);
-}
-
 .sport-card:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 25px 60px rgba(102, 126, 234, 0.2);
 }
 
 .sport-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
     display: block;
     transition: all 0.4s ease;
-    filter: drop-shadow(0 2px 8px rgba(102, 126, 234, 0.2));
-    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+    filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.2));
+    font-family: 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
     line-height: 1;
 }
 
 .sport-card:hover .sport-icon {
-    transform: scale(1.2) rotate(10deg);
-    filter: drop-shadow(0 4px 15px rgba(102, 126, 234, 0.4));
+    transform: scale(1.2) rotate(5deg);
+    filter: drop-shadow(0 6px 20px rgba(102, 126, 234, 0.4));
 }
 
 .sport-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
     color: #2d3748;
     font-weight: 600;
 }
 
 .sport-card p {
     color: #718096;
-    font-size: 0.85rem;
-    line-height: 1.4;
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
-/* About Section */
+/* ========== ABOUT SECTION ========== */
 .about-section {
-    padding: 100px 0;
+    padding: 120px 0;
     background: white;
     position: relative;
 }
 
 .about-section h2 {
     text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 4rem;
+    font-size: 3rem;
+    margin-bottom: 5rem;
     color: #2d3748;
     font-weight: 700;
     position: relative;
@@ -386,10 +400,10 @@ body {
 .about-section h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
+    width: 100px;
     height: 4px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 2px;
@@ -397,7 +411,7 @@ body {
 
 .problem-solution {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 4rem;
     max-width: 1000px;
     margin: 0 auto;
@@ -405,11 +419,11 @@ body {
 
 .problem, .solution {
     background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 3.5rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(102, 126, 234, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
 }
@@ -420,8 +434,9 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    transition: transform 0.3s ease;
+    height: 5px;
+    transition: transform 0.4s ease;
+    border-radius: 24px 24px 0 0;
 }
 
 .problem::before {
@@ -439,40 +454,51 @@ body {
 }
 
 .problem:hover, .solution:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
 .problem h3 {
     color: #e53e3e;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
 }
 
 .solution h3 {
     color: #38a169;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
 }
 
 .problem p, .solution p {
     color: #4a5568;
     line-height: 1.8;
-    font-size: 1rem;
+    font-size: 1.05rem;
 }
 
-/* Features Section */
+/* ========== FEATURES SECTION ========== */
 .features-section {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e6f3ff 100%);
+    position: relative;
+}
+
+.features-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
 }
 
 .features-section h2 {
     text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 4rem;
+    font-size: 3rem;
+    margin-bottom: 5rem;
     color: #2d3748;
     font-weight: 700;
     position: relative;
@@ -481,10 +507,10 @@ body {
 .features-section h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
+    width: 100px;
     height: 4px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 2px;
@@ -492,8 +518,8 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -501,13 +527,14 @@ body {
 .feature {
     background: white;
     text-align: center;
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+    padding: 3.5rem 2.5rem;
+    border-radius: 24px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(102, 126, 234, 0.1);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .feature::before {
@@ -516,10 +543,11 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 5px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
+    border-radius: 24px 24px 0 0;
 }
 
 .feature:hover::before {
@@ -527,52 +555,61 @@ body {
 }
 
 .feature:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
 }
 
 .feature h3 {
     color: #2d3748;
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
 .feature p {
     color: #718096;
-    line-height: 1.6;
-    font-size: 0.95rem;
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
-/* Footer */
+/* ========== FOOTER ========== */
 footer {
     background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
     color: white;
-    padding: 60px 0 30px;
+    padding: 80px 0 40px;
     position: relative;
 }
 
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
+    gap: 3.5rem;
     margin-bottom: 3rem;
 }
 
 .footer-section h3, .footer-section h4 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: #f7fafc;
     font-weight: 600;
 }
 
 .footer-section h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-section h4 {
+    font-size: 1.2rem;
 }
 
 .footer-section p {
     color: #cbd5e0;
-    line-height: 1.6;
-    margin-bottom: 0.8rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
 }
 
 .footer-section ul {
@@ -580,7 +617,7 @@ footer {
 }
 
 .footer-section ul li {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 .footer-section a {
@@ -588,37 +625,17 @@ footer {
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
+    font-size: 0.95rem;
 }
 
 .footer-section a:hover {
     color: #667eea;
-    padding-left: 5px;
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.social-link {
-    padding: 8px 16px;
-    background: rgba(102, 126, 234, 0.2);
-    border-radius: 20px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(102, 126, 234, 0.3);
-}
-
-.social-link:hover {
-    background: rgba(102, 126, 234, 0.4);
-    transform: translateY(-2px);
-    padding-left: 16px;
+    padding-left: 8px;
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 30px;
+    padding-top: 40px;
     border-top: 1px solid #4a5568;
     color: #a0aec0;
     font-size: 0.9rem;
@@ -634,11 +651,11 @@ footer {
     color: #667eea;
 }
 
-/* Animations */
+/* ========== ANIMATIONS ========== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -651,11 +668,26 @@ footer {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-8px);
     }
 }
 
-/* Responsive Design */
+/* ========== ACCESSIBILITY ========== */
+.btn-login:focus,
+.btn-signup:focus,
+.btn-primary:focus,
+.btn-secondary:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
+
+.nav-links a:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -666,44 +698,73 @@ footer {
     }
 
     .btn-login, .btn-signup {
-        padding: 8px 16px;
+        padding: 10px 18px;
         font-size: 0.85rem;
     }
 
+    .hero {
+        padding: 140px 0 100px;
+    }
+
     .hero-content h2 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        line-height: 1.2;
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
     }
 
     .cta-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 1.5rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
     }
 
     .problem-solution {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.5rem;
     }
 
-    .sports-section h2, .about-section h2, .features-section h2 {
-        font-size: 2.2rem;
+    .problem, .solution {
+        padding: 2.5rem;
+        min-width: unset;
+    }
+
+    .sports-section h2,
+    .about-section h2,
+    .features-section h2 {
+        font-size: 2.4rem;
     }
 
     .sports-grid {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 2rem;
     }
 
     .sport-card {
-        padding: 1.5rem 1rem;
-        min-height: 150px;
+        padding: 2rem 1.5rem;
+        min-height: 180px;
     }
 
     .sport-icon {
-        font-size: 2rem;
+        font-size: 2.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .feature {
+        padding: 2.5rem 2rem;
     }
 }
 
@@ -716,40 +777,125 @@ footer {
         padding: 120px 0 80px;
     }
 
-    .sports-section, .about-section, .features-section {
-        padding: 80px 0;
+    .sports-section,
+    .about-section,
+    .features-section {
+        padding: 100px 0;
     }
 
     .hero-content h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
     }
 
     .logo h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .logo-icon {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    .sports-section h2,
+    .about-section h2,
+    .features-section h2 {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .sports-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .sport-card {
+        padding: 1.8rem 1.2rem;
+        min-height: 160px;
+    }
+
+    .sport-icon {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .sport-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .sport-card p {
+        font-size: 0.85rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
     }
 }
 
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Additional visual enhancements */
+/* ========== ENHANCED VISUAL EFFECTS ========== */
 .sport-card, .feature, .problem, .solution {
     backdrop-filter: blur(10px);
 }
 
-/* Hover effects for better interactivity */
-.navbar:hover {
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+/* Subtle parallax effect for hero background */
+.hero-bg {
+    transform: translateZ(0);
+    will-change: transform;
 }
 
-/* Focus states for accessibility */
-.btn-login:focus, .btn-signup:focus, .btn-primary:focus, .btn-secondary:focus {
+/* Enhanced button hover states */
+.btn-primary:active, .btn-secondary:active {
+    transform: translateY(-1px);
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, .sport-card, .feature {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== ADDITIONAL POLISH ========== */
+/* Add subtle gradient overlays for depth */
+.sports-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+}
+
+.features-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+}
+
+/* Enhanced focus states for better accessibility */
+*:focus {
+    outline: none;
+}
+
+button:focus-visible,
+a:focus-visible {
     outline: 2px solid #667eea;
     outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Loading states and micro-interactions */
+.sport-card:active {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.feature:active {
+    transform: translateY(-8px) scale(1.02);
 }

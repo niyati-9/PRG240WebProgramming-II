@@ -182,7 +182,7 @@
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <p><strong>Email:</strong> info@khel.com.np</p>
-                    <p><strong>Phone:</strong> +977-1-XXXXXXX</p>
+                    <p><strong>Phone:</strong> +977-1-7654321</p>
                     <p><strong>Address:</strong> Kathmandu, Nepal</p>
                     <p><strong>Business Hours:</strong> 9 AM - 6 PM (Mon-Fri)</p>
                 </div>
