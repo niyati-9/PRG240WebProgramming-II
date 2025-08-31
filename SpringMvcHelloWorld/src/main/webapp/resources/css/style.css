@@ -836,7 +836,6 @@ footer {
     }
 }
 
-/* ========== ENHANCED VISUAL EFFECTS ========== */
 .sport-card, .feature, .problem, .solution {
     backdrop-filter: blur(10px);
 }
@@ -857,7 +856,6 @@ button, a, .sport-card, .feature {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ========== ADDITIONAL POLISH ========== */
 /* Add subtle gradient overlays for depth */
 .sports-section::after {
     content: '';
