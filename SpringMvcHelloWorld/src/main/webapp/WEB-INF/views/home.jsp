@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,16 +88,6 @@
                         <div class="sport-icon">&#x1F3D3;</div>
                         <h3>Table Tennis</h3>
                         <p>Indoor table tennis halls</p>
-                    </div>
-                    <div class="sport-card">
-                        <div class="sport-icon">&#x1F94A;</div>
-                        <h3>Boxing</h3>
-                        <p>Boxing gyms and training centers</p>
-                    </div>
-                    <div class="sport-card">
-                        <div class="sport-icon">&#x1F3CB;&#xFE0F;</div>
-                        <h3>Fitness</h3>
-                        <p>Gyms and fitness centers</p>
                     </div>
                 </div>
             </div>
