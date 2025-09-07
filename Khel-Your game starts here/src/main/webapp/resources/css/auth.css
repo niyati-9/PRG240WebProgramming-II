@@ -1,4 +1,4 @@
-/* ========== PROFESSIONAL AUTH PAGE STYLES ========== */
+/* ========== AUTH PAGE STYLES ========== */
 
 * {
     margin: 0;
@@ -39,7 +39,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 80px; /* Fix for header overlap */
+    padding-top: 80px;
 }
 
 html {
@@ -85,7 +85,7 @@ main {
     50% { opacity: 0.6; }
 }
 
-/* ========== NAVIGATION (MATCHING MAIN STYLE.CSS) ========== */
+/* ========== NAVIGATION ========== */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
@@ -108,7 +108,7 @@ main {
     padding: 1rem 20px;
 }
 
-/* ========== LOGO (MATCHING MAIN STYLE.CSS) ========== */
+/* ========== LOGO ========== */
 .logo {
     display: flex;
     align-items: center;
@@ -138,7 +138,7 @@ main {
     transition: var(--transition);
 }
 
-/* ========== NAVIGATION LINKS (MATCHING MAIN STYLE.CSS) ========== */
+/* ========== NAVIGATION LINKS ========== */
 .nav-links {
     display: flex;
     list-style: none;
@@ -177,7 +177,7 @@ main {
     transform: translateY(-1px);
 }
 
-/* ========== BUTTONS (MATCHING MAIN STYLE.CSS) ========== */
+/* ========== BUTTONS ========== */
 .auth-buttons {
     display: flex;
     gap: 1rem;

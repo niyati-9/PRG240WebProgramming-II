@@ -23,7 +23,7 @@ public class HelloController {
     public String hello(Model model) {
         logger.info("Hello endpoint called");
         model.addAttribute("message", "Hello World from Spring MVC!");
-        return "home"; // resolves to /WEB-INF/views/hello.jsp
+        return "home";
     }
 
 }

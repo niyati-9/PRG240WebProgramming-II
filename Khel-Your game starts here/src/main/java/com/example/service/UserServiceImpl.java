@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
         phoneIndex.put(admin.getPhone(), admin);
 
         // Create demo player
-        User player = new User("John Doe", "player@example.com", "9876543210",
+        User player = new User("Niyati Malla", "niyati@khel.com", "9876543211",
                 hashPassword("player123"), UserType.PLAYER);
         player.setId(nextId++);
         player.setEmailVerified(true);
