@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d6832f-a9b9-4844-b6d3-591716d0b997" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e1d6832f-a9b9-4844-b6d3-591716d0b997" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,10 +56,10 @@
     "Smart Tomcat.Unnamed.executor": "Run",
     "Tomcat Server.Tomcat 10.1.44.executor": "Run",
     "Tomcat Server.Unnamed.executor": "Run",
-    "git-widget-placeholder": "Niyati/Week1",
+    "git-widget-placeholder": "Niyati/Week2",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ROG/OneDrive/Desktop/SpringMvcHelloWorld",
+    "last_opened_file_path": "C:/Users/ROG/OneDrive/Desktop/PRG240WebProgramming-II/SpringMvcHelloWorld",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
