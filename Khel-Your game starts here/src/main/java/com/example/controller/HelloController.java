@@ -16,7 +16,7 @@ public class HelloController {
     public String root(Model model) {
         logger.info("Root endpoint called");
         model.addAttribute("message", "Welcome to Spring MVC!");
-        return "hello";
+        return "home";
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)

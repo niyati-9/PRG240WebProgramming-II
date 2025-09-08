@@ -95,7 +95,6 @@
 
                     <button type="submit" class="btn-auth-primary">
                         <span>Sign In</span>
-                        <span class="btn-icon">🚀</span>
                     </button>
                 </form>
 

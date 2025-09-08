@@ -235,7 +235,7 @@ main {
 
 .auth-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 720px; /* Increased from 480px */
     position: relative;
 }
 
@@ -264,7 +264,7 @@ main {
 }
 
 .signup-card {
-    max-width: 600px;
+    max-width: 800px;
 }
 
 /* ========== AUTH HEADER ========== */
@@ -489,7 +489,7 @@ main {
 
 .checkbox-wrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
     font-size: 1rem;
     color: var(--text-secondary);
@@ -501,11 +501,11 @@ main {
 }
 
 .checkmark {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 3px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
     margin-right: 0.75rem;
     position: relative;
     transition: var(--transition);
@@ -524,7 +524,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 12px;
+    font-size: 16px; /* Increased from 12px */
     font-weight: bold;
 }
 

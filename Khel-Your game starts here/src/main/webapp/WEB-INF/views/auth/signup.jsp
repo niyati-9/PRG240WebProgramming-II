@@ -40,7 +40,7 @@
         <div class="auth-container">
             <div class="auth-card signup-card">
                 <div class="auth-header">
-                    <div class="auth-icon">🎉</div>
+                    <div class="auth-icon">🏅</div>
                     <h2>Join Khel Today</h2>
                     <p>Create your account and start booking amazing sports venues in minutes</p>
                 </div>
