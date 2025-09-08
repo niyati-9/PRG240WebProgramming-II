@@ -524,7 +524,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 16px; /* Increased from 12px */
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -1089,7 +1089,7 @@ main {
     }
 
     .auth-main {
-        padding: 140px 1rem 40px; /* Match main style.css hero mobile padding */
+        padding: 140px 1rem 40px;
     }
 
     .auth-container {
@@ -1167,7 +1167,7 @@ main {
 
 @media (max-width: 480px) {
     .auth-main {
-        padding: 120px 1rem 40px; /* Match main style.css hero mobile padding */
+        padding: 120px 1rem 40px;
     }
 
     .auth-container {
@@ -1223,7 +1223,7 @@ main {
     }
 
     .navbar .container {
-        height: 70px; /* Keep consistent with main style.css */
+        height: 70px;
     }
 
     .summary-item {

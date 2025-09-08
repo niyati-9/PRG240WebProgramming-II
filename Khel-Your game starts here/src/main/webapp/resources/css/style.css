@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 80px; /* Fix for header overlap */
+    padding-top: 80px;
 }
 
 html {
