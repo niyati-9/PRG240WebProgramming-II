@@ -1288,7 +1288,7 @@ main {
     }
 }
 
-/* ========== FOCUS STYLES ========== */
+/* ========== FOCUSSTYLES ========== */
 *:focus {
     outline: none;
 }
