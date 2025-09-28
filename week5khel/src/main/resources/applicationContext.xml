@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Enable component scanning for services, DAOs, and configurations -->
+    <context:component-scan base-package="com.example.config" />
+    <context:component-scan base-package="com.example.service" />
+    <context:component-scan base-package="com.example.dao" />
+    <context:component-scan base-package="com.example.util" />
+    <context:component-scan base-package="com.example.filter" />
+
+    <!-- Property placeholder configuration -->
+    <context:property-placeholder location="classpath:application.properties"
+                                  ignore-unresolvable="true" />
+
+</beans>
