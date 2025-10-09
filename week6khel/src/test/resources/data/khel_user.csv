@@ -1,0 +1,36 @@
+username,email,fullName,phoneNumber,userType
+rajan_player,rajan.sharma@khel.com,Rajan Sharma,9841234567,player
+sita_coach,sita.thapa@khel.com,Sita Thapa,9841234568,coach
+kumar_admin,kumar.basnet@khel.com,Kumar Basnet,9841234569,admin
+maya_player,maya.gurung@khel.com,Maya Gurung,9841234570,player
+bikash_player,bikash.rai@khel.com,Bikash Rai,9841234571,player
+anjali_coach,anjali.poudel@khel.com,Anjali Poudel,9841234572,coach
+rohan_player,rohan.shrestha@khel.com,Rohan Shrestha,9841234573,player
+priya_player,priya.karki@khel.com,Priya Karki,9841234574,player
+suresh_coach,suresh.tamang@khel.com,Suresh Tamang,9841234575,coach
+anil_admin,anil.maharjan@khel.com,Anil Maharjan,9841234576,admin
+deepa_player,deepa.bhattarai@khel.com,Deepa Bhattarai,9841234577,player
+ramesh_player,ramesh.adhikari@khel.com,Ramesh Adhikari,9841234578,player
+nisha_coach,nisha.khadka@khel.com,Nisha Khadka,9841234579,coach
+prakash_player,prakash.magar@khel.com,Prakash Magar,9841234580,player
+sunita_player,sunita.limbu@khel.com,Sunita Limbu,9841234581,player
+bishal_coach,bishal.chhetri@khel.com,Bishal Chhetri,9841234582,coach
+kritika_player,kritika.Nepal@khel.com,Kritika Nepal,9841234583,player
+santosh_admin,santosh.pandey@khel.com,Santosh Pandey,9841234584,admin
+manisha_player,manisha.thakuri@khel.com,Manisha Thakuri,9841234585,player
+rajesh_player,rajesh.ghale@khel.com,Rajesh Ghale,9841234586,player
+pooja_coach,pooja.joshi@khel.com,Pooja Joshi,9841234587,coach
+dinesh_player,dinesh.lama@khel.com,Dinesh Lama,9841234588,player
+sapana_player,sapana.subedi@khel.com,Sapana Subedi,9841234589,player
+kiran_coach,kiran.budathoki@khel.com,Kiran Budathoki,9841234590,coach
+ritesh_player,ritesh.dhungana@khel.com,Ritesh Dhungana,9841234591,player
+shraddha_player,shraddha.oli@khel.com,Shraddha Oli,9841234592,player
+dipesh_admin,dipesh.aryal@khel.com,Dipesh Aryal,9841234593,admin
+sangita_player,sangita.acharya@khel.com,Sangita Acharya,9841234594,player
+ashish_player,ashish.dahal@khel.com,Ashish Dahal,9841234595,player
+rashmi_coach,rashmi.uprety@khel.com,Rashmi Uprety,9841234596,coach
+invalid_user,invalid-email-format,Test User,9841234597,player
+short_name,a,Short Name User,9841234598,player
+long_user,verylongusernamethatshouldexceedthelimit123456789012345678901234567890@test.com,Very Long Name User,9841234599,player
+invalid_phone,invalid.phone@khel.com,Invalid Phone User,abc123,player
+blank_type,blank.type@khel.com,Blank Type User,9841234600,
