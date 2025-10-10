@@ -1,4 +1,8 @@
 com\example\CucumberTest.class
-steps\CucumberSpringConfiguration.class
+steps\EnhancedCrudSteps$UserData.class
 steps\AuthenticationSteps.class
+steps\EnhancedCrudSteps.class
+steps\AuthenticationSteps$UserInfo.class
+com\example\api\UserCrudApiTest.class
+steps\CucumberSpringConfiguration.class
 com\example\api\AuthenticationApiTest.class

@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Cucumber Step Definitions for Authentication Features
- * Version with dynamic usernames to avoid conflicts
+ * ONLY contains authentication-specific steps
  *
  * @author Khel App Development Team
- * @version 5.0 - Fixed with dynamic usernames
+ * @version 8.0 - Fixed Email Uniqueness Issues
  */
 public class AuthenticationSteps {
 
@@ -28,25 +28,43 @@ public class AuthenticationSteps {
     private String currentUsername;
     private String currentPassword;
 
-    // Track which usernames have been used to make them unique
     private static final Map<String, String> usernameMap = new HashMap<>();
+    private static final Map<String, UserInfo> userInfoMap = new HashMap<>();
     private static long usernameCounter = System.currentTimeMillis();
 
-    /**
-     * Make username unique by adding timestamp suffix if it's a test username
-     */
+    static class UserInfo {
+        String uniqueUsername;
+        String password;
+        String email;
+        Long userId;
+    }
+
     private String makeUsernameUnique(String username) {
-        // If we've already made this username unique in this test run, use the same one
         if (usernameMap.containsKey(username)) {
             return usernameMap.get(username);
         }
 
-        // Create unique username by adding counter
         String uniqueUsername = username + "_" + (usernameCounter++);
         usernameMap.put(username, uniqueUsername);
 
         System.out.println("🔄 Mapped '" + username + "' to unique '" + uniqueUsername + "'");
         return uniqueUsername;
+    }
+
+    /**
+     * Generate unique email by prepending timestamp
+     */
+    private String makeEmailUnique(String email) {
+        long timestamp = System.currentTimeMillis();
+
+        // If email contains @, insert timestamp before @
+        if (email.contains("@")) {
+            int atIndex = email.indexOf("@");
+            return timestamp + "_" + email.substring(0, atIndex) + "@" + email.substring(atIndex + 1);
+        }
+
+        // Otherwise just prepend timestamp
+        return timestamp + "_" + email;
     }
 
     @Given("the authentication API is available at {string}")
@@ -57,9 +75,8 @@ public class AuthenticationSteps {
 
     @Given("a user exists with username {string}, password {string}, email {string}, full name {string}, phone {string}, and user type {string}")
     public void aUserExistsWithCompleteData(String username, String password, String email, String fullName, String phone, String userType) {
-        // Make username unique
         String uniqueUsername = makeUsernameUnique(username);
-        String uniqueEmail = usernameCounter + "_" + email; // Make email unique too
+        String uniqueEmail = makeEmailUnique(email);  // MAKE EMAIL UNIQUE
 
         Map<String, String> userData = new HashMap<>();
         userData.put("username", uniqueUsername);
@@ -81,6 +98,21 @@ public class AuthenticationSteps {
 
             if (regResponse.getStatusCode() == 200 || regResponse.getStatusCode() == 201) {
                 System.out.println("✅ User registered: " + uniqueUsername);
+
+                try {
+                    Long userId = regResponse.jsonPath().getLong("data.user.userId");
+                    UserInfo info = new UserInfo();
+                    info.uniqueUsername = uniqueUsername;
+                    info.password = password;
+                    info.email = uniqueEmail;
+                    info.userId = userId;
+                    userInfoMap.put(username, info);
+
+                    // Share with EnhancedCrudSteps
+                    syncToEnhancedSteps();
+                } catch (Exception e) {
+                    System.out.println("⚠️ Could not extract user ID: " + e.getMessage());
+                }
             } else {
                 System.out.println("⚠️ Registration status: " + regResponse.getStatusCode());
             }
@@ -94,12 +126,13 @@ public class AuthenticationSteps {
 
     @Given("I have a valid JWT token for user {string}")
     public void iHaveAValidJWTTokenForUser(String username) {
-        // Use the unique username if it was mapped
-        String actualUsername = usernameMap.getOrDefault(username, username);
+        UserInfo info = userInfoMap.get(username);
+        String actualUsername = info != null ? info.uniqueUsername : usernameMap.getOrDefault(username, username);
+        String actualPassword = info != null ? info.password : currentPassword;
 
         Map<String, String> loginData = new HashMap<>();
         loginData.put("username", actualUsername);
-        loginData.put("password", currentPassword);
+        loginData.put("password", actualPassword);
 
         System.out.println("Getting token for: " + actualUsername);
 
@@ -114,7 +147,23 @@ public class AuthenticationSteps {
             try {
                 jwtToken = response.jsonPath().getString("data.token");
                 refreshToken = response.jsonPath().getString("data.refreshToken");
-                System.out.println("🔑 JWT Token obtained");
+                Long userId = response.jsonPath().getLong("data.userId");
+
+                currentUsername = actualUsername;
+
+                // Update user info with userId
+                if (info == null) {
+                    info = new UserInfo();
+                    info.uniqueUsername = actualUsername;
+                    info.password = actualPassword;
+                    userInfoMap.put(username, info);
+                }
+                info.userId = userId;
+
+                System.out.println("🔑 JWT Token obtained for user ID: " + userId);
+
+                // Share with EnhancedCrudSteps
+                syncToEnhancedSteps();
             } catch (Exception e) {
                 System.out.println("⚠️ Could not extract tokens: " + e.getMessage());
             }
@@ -123,9 +172,8 @@ public class AuthenticationSteps {
 
     @When("I register a new user with username {string}, password {string}, email {string}, full name {string}, phone {string}, and user type {string}")
     public void iRegisterNewUserWithCompleteData(String username, String password, String email, String fullName, String phone, String userType) {
-        // Make username and email unique
         String uniqueUsername = makeUsernameUnique(username);
-        String uniqueEmail = usernameCounter + "_" + email;
+        String uniqueEmail = makeEmailUnique(email);  // MAKE EMAIL UNIQUE
 
         Map<String, String> userData = new HashMap<>();
         userData.put("username", uniqueUsername);
@@ -135,7 +183,7 @@ public class AuthenticationSteps {
         userData.put("phoneNumber", phone);
         userData.put("userType", userType);
 
-        System.out.println("📝 Registration attempt: " + uniqueUsername);
+        System.out.println("📝 Registration attempt: " + uniqueUsername + " with email: " + uniqueEmail);
 
         response = RestAssured
                 .given()
@@ -146,6 +194,22 @@ public class AuthenticationSteps {
 
         currentUsername = uniqueUsername;
         currentPassword = password;
+
+        if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
+            try {
+                Long userId = response.jsonPath().getLong("data.user.userId");
+                UserInfo info = new UserInfo();
+                info.uniqueUsername = uniqueUsername;
+                info.password = password;
+                info.email = uniqueEmail;
+                info.userId = userId;
+                userInfoMap.put(username, info);
+
+                syncToEnhancedSteps();
+            } catch (Exception e) {
+                System.out.println("⚠️ Could not extract user ID: " + e.getMessage());
+            }
+        }
 
         System.out.println("Registration Status: " + response.getStatusCode());
     }
@@ -160,7 +224,6 @@ public class AuthenticationSteps {
         Map<String, String> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("password", password);
-        // Missing email, fullName, phoneNumber, userType
 
         System.out.println("📝 Registration with missing fields (should fail with 400 or 404)");
 
@@ -179,7 +242,6 @@ public class AuthenticationSteps {
         Map<String, String> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("email", email);
-        // Missing password, fullName, phoneNumber, userType
 
         System.out.println("📝 Registration with missing password (should fail with 400 or 404)");
 
@@ -195,8 +257,8 @@ public class AuthenticationSteps {
 
     @When("I login with username {string} and password {string}")
     public void iLoginWithUsernameAndPassword(String username, String password) {
-        // Use the unique username if it was mapped
-        String actualUsername = usernameMap.getOrDefault(username, username);
+        UserInfo info = userInfoMap.get(username);
+        String actualUsername = info != null ? info.uniqueUsername : usernameMap.getOrDefault(username, username);
 
         Map<String, String> loginData = new HashMap<>();
         loginData.put("username", actualUsername);
@@ -217,9 +279,23 @@ public class AuthenticationSteps {
             try {
                 jwtToken = response.jsonPath().getString("data.token");
                 refreshToken = response.jsonPath().getString("data.refreshToken");
-                System.out.println("✅ Tokens extracted");
+                Long userId = response.jsonPath().getLong("data.userId");
+
+                currentUsername = actualUsername;
+
+                if (info == null) {
+                    info = new UserInfo();
+                    info.uniqueUsername = actualUsername;
+                    info.password = password;
+                    userInfoMap.put(username, info);
+                }
+                info.userId = userId;
+
+                System.out.println("✅ Tokens extracted, User ID: " + userId);
+
+                syncToEnhancedSteps();
             } catch (Exception e) {
-                System.out.println("⚠️ Could not extract tokens");
+                System.out.println("⚠️ Could not extract tokens: " + e.getMessage());
             }
         }
     }
@@ -264,6 +340,18 @@ public class AuthenticationSteps {
     @When("I attempt to access protected endpoint {string} with the invalidated token")
     public void iAttemptToAccessProtectedEndpointWithInvalidatedToken(String endpoint) {
         iAccessProtectedEndpointWithValidToken(endpoint);
+    }
+
+    @When("I attempt to access protected endpoint {string} with invalid token {string}")
+    public void iAttemptToAccessProtectedEndpointWithInvalidToken(String endpoint, String invalidToken) {
+        System.out.println("🚫 Accessing with invalid token: " + endpoint);
+
+        response = RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + invalidToken)
+                .when()
+                .get(endpoint);
     }
 
     @When("I validate the JWT token")
@@ -487,5 +575,49 @@ public class AuthenticationSteps {
         assertTrue(body.contains(status),
                 "Health check should contain status: " + status + ". Body: " + body);
         System.out.println("✅ Health status verified");
+    }
+
+    // ==================== HELPER METHOD ====================
+
+    /**
+     * Sync data to EnhancedCrudSteps using reflection to avoid circular dependency
+     */
+    private void syncToEnhancedSteps() {
+        try {
+            // Get current user info
+            UserInfo currentInfo = null;
+            for (UserInfo info : userInfoMap.values()) {
+                if (info.uniqueUsername != null && info.uniqueUsername.equals(currentUsername)) {
+                    currentInfo = info;
+                    break;
+                }
+            }
+
+            Long userId = currentInfo != null ? currentInfo.userId : null;
+            String email = currentInfo != null ? currentInfo.email : null;
+
+            // Convert UserInfo map to compatible format
+            Map<String, Object> userDataMap = new HashMap<>();
+            for (Map.Entry<String, UserInfo> entry : userInfoMap.entrySet()) {
+                Map<String, Object> userData = new HashMap<>();
+                userData.put("username", entry.getValue().uniqueUsername);
+                userData.put("password", entry.getValue().password);
+                userData.put("email", entry.getValue().email);
+                userData.put("userId", entry.getValue().userId);
+                userDataMap.put(entry.getKey(), userData);
+            }
+
+            // Use reflection to call EnhancedCrudSteps.setSharedData
+            Class<?> enhancedClass = Class.forName("steps.EnhancedCrudSteps");
+            java.lang.reflect.Method setSharedData = enhancedClass.getMethod(
+                    "setSharedData", String.class, Long.class, String.class, String.class, String.class, Map.class
+            );
+
+            setSharedData.invoke(null, jwtToken, userId, currentUsername, currentPassword, email, userDataMap);
+            System.out.println("✅ Data synced to EnhancedCrudSteps");
+        } catch (Exception e) {
+            // If EnhancedCrudSteps not found or method fails, just continue
+            System.out.println("ℹ️ Could not sync to EnhancedCrudSteps: " + e.getMessage());
+        }
     }
 }
