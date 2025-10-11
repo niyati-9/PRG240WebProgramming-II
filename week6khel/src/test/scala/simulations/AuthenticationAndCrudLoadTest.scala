@@ -57,7 +57,7 @@ class KhelAppAuthAndCrudLoadTest extends Simulation {
       .body(StringBody("""{"username":"#{username}","password":"#{password}"}""")).asJson
       .check(status.is(200))
       .check(jsonPath("$.success").is("true"))
-      .check(jsonPath("$.data.token").saveAs("jwtToken"))
+      .check(jsonPath(+"$.data.token").saveAs("jwtToken"))
       .check(jsonPath("$.data.userId").saveAs("userId"))
       .check(jsonPath("$.data.refreshToken").optional.saveAs("refreshToken"))
   )
